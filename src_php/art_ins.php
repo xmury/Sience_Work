@@ -1,14 +1,14 @@
 <?php
-function search($pole, $N){
+function search($pole , $N){
     
     for ($x = 0; $x < $N; $x++){
         
         $null  = 0; $krest = 0;
         for ($y = 0; $y < $N; $y++){
-            switch ($pole[x][y]){
-                case '-':   $t = [x,y] ; break;
-                case '0':   $null++ ; break;
-                case 'X':   $krest++; break;
+            switch ($pole[$x][$y]){
+                case '-':   $t = [$x,$y] ; break;
+                case '0':   $null++      ; break;
+                case 'X':   $krest++     ; break;
             }   
 
             if ($null == 2 || $krest == 2){
@@ -19,8 +19,8 @@ function search($pole, $N){
     }
 
     for ($i = 0; $i < 2; $i++){
-        $null = 0; $krest = 0;
-
+        $null = 0; $krest = 0; $y = 0; $x = 0;
+        echo $x , " | " , $y , PHP_EOL;
         switch ($i) {   // Какую диагональ проверять?
             case 0:
                 $y = 0; $x = 0;
@@ -29,13 +29,12 @@ function search($pole, $N){
                 $y = 0; $x = 2;
                 break;
         }
-
-        $q = true;
-        while ($q){
-            switch ($pole[x][y]){
-                case '-':   $t = [x,y]; break;
-                case '0':   $null++ ; break;
-                case 'X':   $krest++; break;
+        while (true){
+            
+            switch ($pole[$x][$y]){
+                case '-':   $t = [$x,$y] ; break;
+                case '0':   $null++      ; break;
+                case 'X':   $krest++     ; break;
             }
 
             if ($null == 2 || $krest == 2) {
@@ -45,12 +44,12 @@ function search($pole, $N){
             switch ($i) {   // Какую диагональ проверять?
                 case 0:
                     $y++; $x++; 
-                    if ($x > 2) { break; }
+                    if ($x > 2) { $i++; break; }
                     break;
                 
                 case 1:
                     $y++; $x--; 
-                    if ($x > 2) { break; }
+                    if ($x > 2) { $i++; break; }
                     break;
             }
         }
@@ -59,17 +58,17 @@ function search($pole, $N){
 }
 
 
-function art_in_1($pole){
+function art_in_1($pole , $N){
     $sign = '0';
 
-    $box = search();
+    $box = search($pole , $N);
     if (gettype($value) == 'NULL'){
         while (true){
             $x = random_int(0,2);
             $y = random_int(0, 2);
 
-            if (pole[x][y] == '-'){
-                $pole[x][y] = $sign; break;
+            if ($pole[$x][$y] == '-'){
+                $pole[$x][$y] = $sign; break;
             }
         }
     }
@@ -79,18 +78,18 @@ function art_in_1($pole){
 
 }
 
-function art_in_2($pole)
+function art_in_2($pole , $N)
 {
     $sign = 'X';
 
-    $box = search();
+    $box = search($pole , $N);
     if (gettype($value) == 'NULL') {
         while (true) {
             $x = random_int(0, 2);
             $y = random_int(0, 2);
 
-            if (pole[x][y] == '-') {
-                $pole[x][y] = $sign;
+            if ($pole[$x][$y] == '-') {
+                $pole[$x][$y] = $sign;
                 break;
             }
         }
