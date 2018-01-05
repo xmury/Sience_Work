@@ -22,19 +22,21 @@ function poligon($N, $f){
     while ( $reviziya == NULL){
         $tik++;
 
-        echo PHP_EOL;
+        //echo PHP_EOL;
         $pole = art_in($pole, $N, 'X', $tik);
-        printer($pole, 3, [1,0], 0);
+        //printer($pole, 3, [1,0], 0);
         $reviziya = revizor($pole, $N);
+        if ($reviziya != NULL) { break; }
 
-        echo PHP_EOL;
+        //echo PHP_EOL;
         $pole = art_in($pole, $N, '0', $tik);
-        printer($pole, 3, [1, 0], 0);
+        //printer($pole, 3, [1, 0], 0);
         $reviziya = revizor($pole, $N);
     }
 
+    printer($pole, 3, [1, 0], 0);
     switch ($reviziya) {
-        case 0:
+        case 10:
             echo "Draw" , PHP_EOL;
             break;
         
