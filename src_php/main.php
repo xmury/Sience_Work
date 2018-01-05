@@ -2,6 +2,18 @@
 include 'art_ins.php';
 include 'fun_of_poligon.php';
 
+function test($pole, $N)
+{
+    $i = 0;
+    $y = 0;
+    for ($x = 0; $x < $N; $x++) {
+            
+        $pole[$x][$y] = $i; $i++;
+        printer($pole, $N, [1, 0], 0);            
+
+        $y++;
+    }
+}
 function poligon($N, $f){
     $pole = generator(3); // Создание поля
     $reviziya = NULL;
@@ -35,5 +47,8 @@ function poligon($N, $f){
     }
 }
 
-poligon(3, true);
+$N = 3;
+$f = true;
+
+poligon($N, $f)
 ?>

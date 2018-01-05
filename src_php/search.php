@@ -24,30 +24,31 @@ function search_lines($pole, $N){
 
 function search_diagonals($pole, $N){
     // .-'
+    $y = 0;
     for ($x = 2; $x >= 0; $x--){
         $step = 0; $t = true;
         
-        for ($y = 0; $y < $N; $y++){
-            if ($pole[$x][$y] == '-'){
-                $step++; $t = [$x , $y];
-            }
+        if ($pole[$x][$y] == '-'){
+            $step++; $t = [$x , $y];           
         }
 
         if ($step == 1) { return $t; }
+        $y++;
     }
     // .-'
 
     // '-.
+    $y = 0;
     for ($x = 0; $x < $N; $x++) {
         $step = 0; $t = true;
         
-        for ($y = 0; $y < $N; $y++) {
-            if ($pole[$x][$y] == '-') {
-                $step++; $t = [$x, $y];
-            }
+        if ($pole[$x][$y] == '-') {
+            $step++; $t = [$x, $y];
         }
 
         if ($step == 1) { return $t; }
+        
+        $y++;
     }
     // '-.
 }
