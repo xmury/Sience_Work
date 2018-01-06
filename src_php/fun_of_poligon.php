@@ -17,11 +17,9 @@ function revizor($pole, $N){
         }
 
         if ($null_v  == $N || $null_g == $N) {
-            echo "line = ", $null_v, " | ", $null_v, PHP_EOL;
             return 1;
         }
         if ($krest_v == $N || $krest_g == $N) {
-            echo "line = ", $krest_v , " | " , $krest_v , PHP_EOL;
             return 2;
         }
     }
@@ -81,7 +79,7 @@ function revizor($pole, $N){
     } 
     // Ничья
 
-    return NULL;
+    return 3;
 }
 
 function printer($pole, $N, $time, $clear){
