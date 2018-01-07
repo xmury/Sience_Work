@@ -9,7 +9,6 @@ function inialization(){
 
         fclose($fp); $fp = fopen('db/0.db', 'w');
         $q  = fwrite($fp, $n_id);                // увеличить на единицу лежащее там число
-        echo "$id | $n_id \n";
     }
     else{
         $fp = fopen('db/0.db', 'w');             // создать файл из списка
@@ -32,7 +31,7 @@ function record($f_name, $tur, $id, $xy, $sign){
     
     if ($tur == 3) {
         $x = $xy['x']; $y = $xy['y'];
-        $wr = "$id $sign $x:$y \n";  
+        $wr = "$id $sign $x:$y\n";  
         fwrite($fp, $wr);
     }
     else {
