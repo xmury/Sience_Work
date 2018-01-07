@@ -34,15 +34,15 @@ function poligon($N)
 
     printer($pole, $N, [0, 0], 0);
     switch ($reviziya) {
-        case 10:
+        case 0:
             echo "Draw", PHP_EOL;
             break;
 
         case 1:
-            echo "AI first - win", PHP_EOL;
+            echo "AI first  [0] - win", PHP_EOL;
             break;
         case 2:
-            echo "AI second - win", PHP_EOL;
+            echo "AI second [X] - win", PHP_EOL;
             break;
     }
 }
