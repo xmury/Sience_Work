@@ -34,6 +34,7 @@ function reader($f_name , $id , $tur){ // Если tur = 0 --> Ищем стро
 }
 
 function worker($id , $xy){ // id - > Какой сейчас ход || $xy - > Координаты первого хода (Обрабатывается если $id = 2)
+    $xy = "$xy[0]:$xy[1]";
     $directs = scandir("db/");
     unset($directs[0]); unset($directs[1]); unset($directs[2]);
     $mass = [];

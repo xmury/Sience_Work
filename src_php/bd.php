@@ -30,7 +30,7 @@ function record($f_name, $tur, $id, $xy, $sign){
     $fp = fopen($way, 'a');
     
     if ($tur == 3) {
-        $x = $xy['x']; $y = $xy['y'];
+        $x = $xy[0]; $y = $xy[1];
         $wr = "$id $sign $x:$y\n";  
         fwrite($fp, $wr);
     }
