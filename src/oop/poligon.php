@@ -1,8 +1,4 @@
 <?php
-include 'art_ins.php';
-include 'fun_of_poligon.php';
-include 'bd.php';
-
 class poligon
 {
     public $N = 3;
