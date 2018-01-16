@@ -82,4 +82,21 @@ function read($f_name , $id)                               // Чтение из 
         }
     }
 }
+
+function read_val($f_name , $id , $val){
+    $string = read($f_name , $id); $string .= " ";
+    $q = 0; $bufer = "";
+    for ($i = 0; $i < strlen($string); $i++) {
+        if ($string[$i] != ' ') { $bufer .= $string[$i]; }
+        else {
+            if ($val == "id" && $q == 0) { return $bufer; }
+            if ($val == "pl" && $q == 1) { return $bufer; }
+            if ($val == "xy" && $q == 2) { 
+                $x = $bufer[0]; $y = $bufer[1];
+                return [$x, $y]; 
+            }
+            $q++; $bufer = "";
+        }
+    }
+}
 ?>
