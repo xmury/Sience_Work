@@ -5,7 +5,73 @@ class ant_in {
     public $mass;
     public $sign;
     public $q;
-    
+
+    function worker($id, $xy)
+    { // id - > Какой сейчас ход || $xy - > Координаты первого хода (Обрабатывается если $id = 2)
+        $xy = "$xy[0]:$xy[1]";
+        $directs = scandir("db/");
+        // Удалим . , .. и 0.db
+            $t = 1;
+            foreach ($directs as $w) {
+                if ($w[0] == '.' || $w[0] == '0'){ 
+                    unset($directs[$t]); $t--; 
+                    $this->mass = array_values($this->mass);
+                }
+
+                $t++;
+            }
+        // Удалим . , .. и 0.db
+        
+        $mass = [];
+
+        if ($id == 1) {
+            foreach ($directs as $w) {
+        
+                $player = read_val($w, 1, "pl"); // Узнаём кто ходит первым
+                $result = read($w, 0);           // Узнаём результат игры   
+                
+        // Проверка результата
+                if ($player == "X" && ($result == "0" || $result == "2")) {
+                    $mass[] = $w;
+                }
+                if ($player == "0" && ($result == "0" || $result == "1")) {
+                    $mass[] = $w;
+                }
+        // Проверка результата
+            }
+        } else {
+            foreach ($directs as $w) {
+        // Проверим координаты первого хода
+                $f_xy = read_val($w , 1 , 'xy');
+                if ($f_xy != $xy) { continue; }
+        // Проверим координаты первого хода
+
+                $player = read_val($w , 2 , 'pl'); // Узнаём кто походил вторым
+
+                $result = read($w , 0);// Узнаём результат игры
+
+        // Проверка результата
+                if ($player == "X" && ($result == 0 || $result == 2)) {
+                    $mass[] = $w;
+                }
+                if ($player == "0" && ($result == 0 || $result == 1)) {
+                    $mass[] = $w;
+                }
+        // Проверка результата
+            }
+        }
+
+    // Пуст ли массив
+        $this->mass = $mass;
+        
+        if (count($mass) == 0) {
+            return null;
+        } else {
+            return 1;
+        }
+    // Пуст ли массив
+    }
+
     public function helper($id , $xy){                              // Проверяет подходит ли нам файл, и в этом случае возвращает нам предполагаемый ход
         $past_step = read_val($w, $id - 1, 'xy');                           // считываем координаты первого хода
 
@@ -19,6 +85,7 @@ class ant_in {
                     $this->mass = array_values($this->mass);                // Обновляем индексацию
                     $this->q--;                                             // Откатываем счётчик
                 }
+                $this->t++;
             }
         }
     }
