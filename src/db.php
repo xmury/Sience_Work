@@ -9,15 +9,20 @@ function inialization()                                    // Инициализ
 
     if (file_exists('db/0.db')) {                          // получаем имя крайнего файла
         $fp = fopen('db/0.db', 'r+');                      // открыть файл
-        $id = fgetc($fp);                                  // извлечь имя
+        while(!feof($fp)){
+            $id .= fgetc($fp);                                  // извлечь имя
+        }
         $n_id = $id + 1;                                   // генерируем новое имя 
 
         fclose($fp);                                       // закрываем файл
+
         $fp = fopen('db/0.db', 'w');                       // снова открыем, но теперь на запись
         $q = fwrite($fp, $n_id);                           // записываем новое имя в файл
     } else {                                           // Если файл не существует       
         $fp = fopen('db/0.db', 'w');                       // создать его
         fwrite($fp, 1);                                    // записать в него 1
+        $f_name = "$id.db";                                // формируем полное имя
+        fclose($fp); return $f_name;
     }
     fclose($fp);                                           // закрыть
 
